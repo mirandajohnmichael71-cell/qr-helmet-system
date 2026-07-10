@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Based System Helmet Security and Management</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Guard Login/Register Modal -->
+    <div id="guardAuthModal" class="modal active">
+        <div class="modal-content guard-auth-container">
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" data-tab="guard-login">Guard Login</button>
+                <button class="auth-tab-btn" data-tab="guard-register">Guard Register</button>
+            </div>
+
+            <!-- Guard Login Tab -->
+            <div id="guard-login" class="auth-tab-content active">
+                <h2>Security Guard Login</h2>
+                <form id="guardLoginForm">
+                    <div class="form-group">
+                        <label for="guardLoginUsername">Username:</label>
+                        <input type="text" id="guardLoginUsername" required>
+                        <span class="error-message" id="guardLoginUsernameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="guardLoginPassword">Password:</label>
+                        <input type="password" id="guardLoginPassword" required>
+                        <span class="error-message" id="guardLoginPasswordError"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+
+            <!-- Guard Register Tab -->
+            <div id="guard-register" class="auth-tab-content">
+                <h2>Security Guard Registration</h2>
+                <form id="guardRegisterForm">
+                    <div class="form-group">
+                        <label for="guardFullName">Full Name:</label>
+                        <input type="text" id="guardFullName" required>
+                        <span class="error-message" id="guardFullNameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="guardContactNumber">Contact Number:</label>
+                        <input type="tel" id="guardContactNumber" required>
+                        <span class="error-message" id="guardContactNumberError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="guardUsername">Username (Uppercase and Lowercase letters):</label>
+                        <input type="text" id="guardUsername" required>
+                        <span class="error-message" id="guardUsernameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="guardPassword">Password (Uppercase and Lowercase letters):</label>
+                        <input type="password" id="guardPassword" required>
+                        <span class="error-message" id="guardPasswordError"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rider Auth Modal -->
+    <div id="riderAuthModal" class="modal">
+        <div class="modal-content rider-auth-container">
+            <button class="close-modal-btn" id="closeRiderAuthBtn">&times;</button>
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" data-tab="rider-login">Rider Login</button>
+                <button class="auth-tab-btn" data-tab="rider-register">Rider Register</button>
+            </div>
+
+            <!-- Rider Login Tab -->
+            <div id="rider-login" class="auth-tab-content active">
+                <h2>Rider Login</h2>
+                <form id="riderLoginForm">
+                    <div class="form-group">
+                        <label for="riderLoginUsername">Username:</label>
+                        <input type="text" id="riderLoginUsername" required>
+                        <span class="error-message" id="riderLoginUsernameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="riderLoginPassword">Password:</label>
+                        <input type="password" id="riderLoginPassword" required>
+                        <span class="error-message" id="riderLoginPasswordError"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+
+            <!-- Rider Register Tab -->
+            <div id="rider-register" class="auth-tab-content">
+                <h2>Rider Registration</h2>
+                <form id="riderRegisterForm">
+                    <div class="form-group">
+                        <label for="riderFullName">Full Name:</label>
+                        <input type="text" id="riderFullName" required>
+                        <span class="error-message" id="riderFullNameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="riderContactNumber">Contact Number:</label>
+                        <input type="tel" id="riderContactNumber" required>
+                        <span class="error-message" id="riderContactNumberError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="helmetBrand">Helmet Brand:</label>
+                        <input type="text" id="helmetBrand" required>
+                        <span class="error-message" id="helmetBrandError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="helmetColor">Helmet Color:</label>
+                        <input type="text" id="helmetColor" required>
+                        <span class="error-message" id="helmetColorError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="helmetDescription">Helmet Description/Design:</label>
+                        <textarea id="helmetDescription" required></textarea>
+                        <span class="error-message" id="helmetDescriptionError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="riderUsername">Username (10 characters - Uppercase, Lowercase, Numbers):</label>
+                        <input type="text" id="riderUsername" maxlength="10" required>
+                        <span class="error-message" id="riderUsernameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="riderPassword">Password (Min 8 characters - Uppercase, Lowercase, Numbers, Special characters):</label>
+                        <input type="password" id="riderPassword" required>
+                        <span class="error-message" id="riderPasswordError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="riderType">User Type:</label>
+                        <select id="riderType" required>
+                            <option value="">Select Type</option>
+                            <option value="student">Student</option>
+                            <option value="professor">Professor</option>
+                            <option value="other">Other Person/Staff</option>
+                        </select>
+                        <span class="error-message" id="riderTypeError"></span>
+                    </div>
+                    <div class="form-group" id="studentNumberGroup" style="display:none;">
+                        <label for="studentNumber">Student Number:</label>
+                        <input type="text" id="studentNumber">
+                        <span class="error-message" id="studentNumberError"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Receipt Modal -->
+    <div id="receiptModal" class="modal">
+        <div class="modal-content receipt-container">
+            <button class="close-modal-btn" id="closeReceiptBtn">&times;</button>
+            <div id="receiptContent">
+                <!-- Receipt will be generated here -->
+            </div>
+            <div class="receipt-actions">
+                <button class="btn btn-primary" id="printReceiptBtn">Print Receipt</button>
+                <button class="btn btn-secondary" id="closeReceiptModalBtn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="mainDashboard" class="dashboard hidden">
+        <div class="dashboard-header">
+            <div class="date-time-display">
+                <span id="currentDateTime"></span>
+            </div>
+            <div class="system-title">
+                <h1>QR Based System Helmet Security and Management<br>Cavite State University - Cavite City Campus</h1>
+                <p class="policy-note">One Person, One Helmet Policy</p>
+            </div>
+            <div class="guard-status">
+                <div class="status-indicator">
+                    <div class="light-indicator" id="guardStatusLight"></div>
+                    <span id="guardName"></span>
+                </div>
+                <button class="btn btn-logout" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+
+        <div class="dashboard-stats">
+            <div class="stat-card">
+                <h3>Helmet Slots</h3>
+                <div class="slot-info">
+                    <span class="occupied"><span id="occupiedSlots">0</span> Occupied</span>
+                    <span class="unoccupied"><span id="unoccupiedSlots">100</span> Unoccupied</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-tabs">
+            <button class="tab-btn active" data-tab="activity-log">Activity Log</button>
+            <button class="tab-btn" data-tab="check-in">Check In</button>
+            <button class="tab-btn" data-tab="check-out">Check Out</button>
+        </div>
+
+        <!-- Activity Log Tab -->
+        <div id="activity-log" class="tab-content active">
+            <div class="activity-controls">
+                <input type="text" id="activitySearch" placeholder="Search by rider name, contact, or slot number...">
+            </div>
+            <div class="activity-table-container">
+                <table id="activityTable" class="activity-table">
+                    <thead>
+                        <tr>
+                            <th>Rider Name</th>
+                            <th>Contact</th>
+                            <th>User Type</th>
+                            <th>Helmet Info</th>
+                            <th>Slot Number</th>
+                            <th>Check In Time</th>
+                            <th>Check Out Time</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="activityTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Check In Tab -->
+        <div id="check-in" class="tab-content">
+            <div class="check-in-container">
+                <button class="btn btn-primary" id="openRiderAuthBtn">Check In Helmet</button>
+            </div>
+            <div class="check-in-message" id="checkInMessage"></div>
+        </div>
+
+        <!-- Check Out Tab -->
+        <div id="check-out" class="tab-content">
+            <div class="check-out-container">
+                <div class="check-out-method-selector">
+                    <label>
+                        <input type="radio" name="checkoutMethod" value="qr" checked>
+                        QR Code Scanner
+                    </label>
+                    <label>
+                        <input type="radio" name="checkoutMethod" value="otp">
+                        One-Time Password
+                    </label>
+                </div>
+
+                <div id="qrScannerContainer" class="check-out-method-content">
+                    <div id="scanner-wrapper" class="scanner-wrapper">
+                        <video id="qrVideo"></video>
+                    </div>
+                    <p>Point camera at QR Code</p>
+                </div>
+
+                <div id="otpInputContainer" class="check-out-method-content" style="display:none;">
+                    <div class="form-group">
+                        <label for="otpInput">Enter One-Time Password:</label>
+                        <input type="text" id="otpInput" placeholder="Enter OTP from receipt">
+                    </div>
+                    <button class="btn btn-primary" id="submitOtpBtn">Verify OTP</button>
+                </div>
+
+                <div id="checkOutMessage" class="check-out-message"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.5/JsBarcode.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.2.3/html5-qrcode.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
